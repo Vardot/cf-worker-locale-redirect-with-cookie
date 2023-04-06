@@ -13,9 +13,9 @@ This is the current Cloudflare Worker responsible for managing the https://www.v
 ## Usage
 ### Enable the Worker on Cloudflare
 1. Log in to your Cloudflare account and select the domain you want to use the worker with.
-2. Click on the "Workers" tab in the dashboard.
+2. Click on the "Workers Routes" tab in the dashboard, then click on "Manager Workers" button.
 3. Create a new worker by clicking on the "Create a Service" button.
-4. Name your Service something like `redirectlocale`. Choose it as an "HTTP Router"
+4. Name your Service something like `redirectlocale`.
 5. Go to "Quick edit" and copy and paste the worker script from this repository into the "Script" section of the worker editor.
 6. Update the variable as needed. See "Customizations" below.
 7. Click "Save and Deploy" to deploy the worker.
