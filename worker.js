@@ -40,12 +40,13 @@ async function handleRequest(request) {
   const currentUrl = new URL(url);
   const currentLocale = getLocaleFromPath(currentUrl.pathname);
   const updateHl = currentUrl.searchParams.get(cookieQueryStringName);
+  const validUpdateHl = Object.values(countryLocaleMap).includes(updateHl);
   const cookieRegex = new RegExp(`${cookieName}=(\\w{2}(?:-\\w{2})?)`);
   const cookieLocale = headers.get('Cookie')?.match(cookieRegex)?.[1];
 
   let newLocale;
 
-  if (updateHl) {
+  if (validUpdateHl) {
     newLocale = updateHl;
   } else if (cookieLocale) {
     newLocale = cookieLocale;
@@ -65,7 +66,7 @@ async function handleRequest(request) {
     // Set the new cookie header
     response.headers.append('Set-Cookie', `${cookieName}=${newLocale}; Path=/; Max-Age=${cookieAge}`);
     return response;
-  } else if (!cookieLocale || updateHl) {
+  } else if (!cookieLocale || (updateHl && validUpdateHl)) {
     const fetchedResponse = await fetch(request);
     const response = new Response(fetchedResponse.body, fetchedResponse);
     // Set the new cookie header
