@@ -1,5 +1,7 @@
-// The mapping between country codes and locales
+// The mapping between country codes and locales. Set available locales that are not
+// mapped to a country with the special key __no_country__ below.
 const countryLocaleMap = {
+  __no_country__: ['ar-sa', 'ar-jo', 'ar-qa', 'ar', 'en'],
   US: 'en-us',
   CA: 'en-us',
   SA: 'en-sa',
@@ -40,7 +42,7 @@ async function handleRequest(request) {
   const currentUrl = new URL(url);
   const currentLocale = getLocaleFromPath(currentUrl.pathname);
   const updateHl = currentUrl.searchParams.get(cookieQueryStringName);
-  const validUpdateHl = Object.values(countryLocaleMap).includes(updateHl);
+  const validUpdateHl = Object.values(countryLocaleMap).flat().includes(updateHl);
   const cookieRegex = new RegExp(`${cookieName}=(\\w{2}(?:-\\w{2})?)`);
   const cookieLocale = headers.get('Cookie')?.match(cookieRegex)?.[1];
 
@@ -85,7 +87,8 @@ function isUserAgentExcluded(userAgent) {
 
 // Get the locale from the URL path
 function getLocaleFromPath(path) {
-  const locales = Object.values(countryLocaleMap).join('|');
+  const locales = [...new Set(Object.values(countryLocaleMap).flat())].join('|');
+  console.log(locales);
   const localeRegex = new RegExp(`^/(${locales})(?:$|/)`, 'i');
   const match = path.match(localeRegex);
   return match ? match[1].toLowerCase() : null;
