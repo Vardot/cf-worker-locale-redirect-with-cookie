@@ -17,7 +17,7 @@ This is the current Cloudflare Worker responsible for managing the https://www.v
 3. Create a new worker by clicking on the "Create a Service" button.
 4. Name your Service something like `redirectlocale`.
 5. Go to "Quick edit" and copy and paste the worker script from this repository into the "Script" section of the worker editor.
-6. Update the variable as needed. See "Customizations" below.
+6. Update the variables as needed. See "Customizations" below.
 7. Click "Save and Deploy" to deploy the worker.
 8. Navigate to "Triggers" in the "Service" page, then add a route for your domain, such as `www.vardot.com/*` with the Zone the domain is on.
 9. Save the route, and your worker is now enabled for the specified domain.
