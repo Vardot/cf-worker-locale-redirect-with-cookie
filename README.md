@@ -36,7 +36,7 @@ const countryLocaleMap = {
 
 When a user from the United States visits your website, they will be redirected to the URL with the `en-us` locale prefix. If the user is from the United Kingdom, they will be redirected to the `en-gb` version of the site, and users from Saudi Arabia will be redirected to the `ar-sa` version.
 
-The user's locale is stored in a cookie, so on their next visit, they will be served the appropriate localized content without redirection. If the user wants to switch to a different locale, they can add a `update_hl` query parameter to the URL, like `https://www.vardot.com/?update_hl=en-gb`, to update their locale preference and be redirected to the new locale.
+The user's locale is stored in a cookie, so on their next visit, they will be served the appropriate localized content without checking for the country again. If the user wants to switch to a different locale, they can add a `update_hl` query parameter to the URL, like `https://www.vardot.com/?update_hl=en-gb`, to update their locale preference and be redirected to the new locale.
 
 ## Customization
 You can customize this worker to suit your specific needs by modifying the following:
