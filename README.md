@@ -1,7 +1,7 @@
 # Cloudflare Worker: Locale-based Redirects and Cookie Handling
 This Cloudflare Worker is designed to handle locale-based redirects for website visitors based on their requests' country, as determined by the `request.cf.country` header. The worker also sets a cookie to store the user's preferred language, allowing for faster and more personalized experiences on subsequent visits. Additionally, users can force a locale update through a query string parameter.
 
-This is the current Cloudflare Worker responsible to manage the https://www.vardot.com multi-locale redirects.
+This is the current Cloudflare Worker responsible for managing the https://www.vardot.com multi-locale redirects.
 
 ## Features
 - Redirects users based on their country code to the appropriate URL with a locale prefix.
