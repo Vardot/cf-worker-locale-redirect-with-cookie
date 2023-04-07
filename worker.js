@@ -103,15 +103,16 @@ function rewriteUrlWithLocale(url, locale) {
 }
 
 function isRedirectable(headers, url) {
-  // Only redirect HTML
+  // Don't redirect none not HTML (static assets)
   const acceptHeader = headers.get('Accept');
   if (!acceptHeader || !acceptHeader.includes('text/html')) {
     return false;
   }
 
-  // Workaround to not redirect some images
+  // Workaround to not redirect precisely by extensions
   const path = new URL(url).pathname;
-  if (path.endsWith('.ico') || path.endsWith('.jpg') || path.endsWith('.png') || path.endsWith('.svg')) {
+  const fileExtensionRegex = /\.(ico|css|js|jpg|webp|png|svg)$/;
+  if (fileExtensionRegex.test(path)) {
     return false;
   }
 
